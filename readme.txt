@@ -13,8 +13,7 @@ License: GPLv2 or later
 
 ### **About the Author**
 
-TemplateKit is the newest creation to the product line up of [CodePopular](https://codepopular.com/), it has already managed to win the hearts of its users with a staggering 5-star rating. The plugin is coded in a structured way so you don't require any major coding know-how and is completely cross-browser compatible with mobile responsive features. You can get the largest number of addon styles for free here.
-
+TemplateKit is a Free WordPress Plugin. You you can get Unlimited WordPress shortcode using this plugin. If you use Elementor initially you will not get shortcode but if you install this plugin in your wordpress website then you will allow to put your elementor template using shortcode. This plugin make your site easy to using shortcode components
 
 
 == Frequently Asked Questions ==
