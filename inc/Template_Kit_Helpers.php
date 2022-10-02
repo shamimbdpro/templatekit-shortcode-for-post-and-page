@@ -17,7 +17,7 @@ class Uta_helpers{
      */
     public function init(){
         // Add plugin option name in admin top bar.
-        add_action('admin_bar_menu', [ $this, 'template_kit_admin_top_bar_option'], 2000);
+        add_action('admin_bar_menu', [ $this, 'template_kit_admin_top_bar_option' ], 2000);
     }
 
 
@@ -30,7 +30,7 @@ class Uta_helpers{
         $menu_id = 'templatekit';
         $wp_admin_bar->add_menu(array(
 			'id' => $menu_id,
-			'title' => __('TemplateKit', 'templatekit_wp_shortcode'),
+			'title' => __('TemplateKit', 'templatekit-wp-shortcode'),
 			'href' => admin_url() .'/edit.php?post_type=template_kit',
 		));
     }

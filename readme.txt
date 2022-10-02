@@ -13,7 +13,7 @@ License: GPLv2 or later
 
 ### **About the Author**
 
-TemplateKit is a Free WordPress Plugin. You you can get Unlimited WordPress shortcode using this plugin. If you use Elementor initially you will not get shortcode but if you install this plugin in your wordpress website then you will allow to put your elementor template using shortcode. This plugin make your site easy to using shortcode components
+TemplateKit is a Free WordPress Plugin. You you can get Unlimited WordPress shortcode using this plugin. If you use Elementor initially you will not get shortcode but if you install this plugin in your WordPress website then you will allow to put your elementor template using shortcode. This plugin make your site easy to using shortcode components
 
 
 == Frequently Asked Questions ==

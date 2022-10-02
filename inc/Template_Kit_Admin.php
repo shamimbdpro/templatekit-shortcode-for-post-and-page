@@ -26,13 +26,13 @@ class Template_Kit_Admin
     public function init() {
 
         add_action('init', array( $this, 'template_kit_shortcode_create_post_type' ));
-        add_action('elementor/init', [ $this, 'template_kit_add_elementor_support']);
-        add_filter('manage_template_kit_posts_columns', array( $this, 'template_kit_shortcode_column_title'));
-        add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content'), 10, 2);
+        add_action('elementor/init', [ $this, 'template_kit_add_elementor_support' ]);
+        add_filter('manage_template_kit_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
+        add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
         add_filter('manage_elementor_library_posts_columns', array( $this, 'manage_elementor_library_posts_columns_title' ));
         add_action('manage_elementor_library_posts_custom_column', array( $this, 'manage_elementor_library_posts_custom_column_content' ), 10, 2);
-        add_shortcode("template-kit", [ $this, 'template_kit_render_shortcode']);
-        add_action("add_meta_boxes", [ $this, 'template_kit_add_meta_boxes']);
+        add_shortcode("template-kit", [ $this, 'template_kit_render_shortcode' ]);
+        add_action("add_meta_boxes", [ $this, 'template_kit_add_meta_boxes' ]);
     }
 
 
@@ -53,7 +53,7 @@ class Template_Kit_Admin
             'name_admin_bar'        => __('Template Kit', 'templatekit-wp-shortcode'),
             'archives'              => __('List Archives', 'templatekit-wp-shortcode'),
             'parent_item_colon'     => __('Parent List:', 'templatekit-wp-shortcode'),
-            'all_items'             => __('All Templates', 'templatekit-wp-shortcodes'),
+            'all_items'             => __('All Templates', 'templatekit-wp-shortcode'),
             'add_new_item'          => __('Add New Template', 'templatekit-wp-shortcode'),
             'add_new'               => __('Add New', 'templatekit-wp-shortcode'),
             'new_item'              => __('New UTA Template', 'templatekit-wp-shortcode'),
@@ -104,7 +104,7 @@ class Template_Kit_Admin
      * @param string $defaults
      * @return void
      */
-    public  function template_kit_shortcode_column_title($defaults ) {
+    public  function template_kit_shortcode_column_title( $defaults ) {
         $defaults['template-kit-shortcode']  = 'Shortcode';
         return $defaults;
     }
@@ -118,7 +118,7 @@ class Template_Kit_Admin
      * @param int $post_ID
      * @return void
      */
-    public function template_kit_shortcode_column_content($column_name, $post_ID ) {
+    public function template_kit_shortcode_column_content( $column_name, $post_ID ) {
 
         if ( 'template-kit-shortcode' == $column_name ) {
             echo esc_html('[template-kit id="' . $post_ID . '"]');
@@ -164,12 +164,12 @@ class Template_Kit_Admin
      * @param [type] $atts
      * @return void
      */
-    public function template_kit_render_shortcode($atts ) {
+    public function template_kit_render_shortcode( $atts ) {
 
         // Enable support for WPML & Polylang
         $language_support = apply_filters('uta_multilingual_support', false);
 
-        if (empty($atts['id'])) {
+        if ( empty($atts['id']) ) {
             return;
         }
 
@@ -212,7 +212,7 @@ class Template_Kit_Admin
         add_meta_box(
             'template-kit-shortcode-box',
             'TemplateKit Shortcode',
-            [ $this, 'template_kit_add_meta_boxes_content'],
+            [ $this, 'template_kit_add_meta_boxes_content' ],
             'template_kit',
             'side',
             'high'
@@ -228,7 +228,7 @@ class Template_Kit_Admin
      * @param object $post
      * @return void
      */
-    function template_kit_add_meta_boxes_content($post ) {  ?>
+    function template_kit_add_meta_boxes_content( $post ) {  ?>
         <h4 style="margin-bottom:5px;">Shortcode</h4>
         <input type='text' class='widefat' value='[template-kit id="<?php echo esc_attr($post->ID); ?>"]' readonly="">
     
