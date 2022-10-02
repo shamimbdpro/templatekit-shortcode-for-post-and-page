@@ -25,14 +25,14 @@ class Template_Kit_Admin
      */
     public function init() {
 
-        add_action('init', array( $this, 'uta_template_shortcode_create_post_type' ));
-        add_action('elementor/init', [ $this, 'uta_template_add_elementor_support' ]);
-        add_filter('manage_uta_template_posts_columns', array( $this, 'uta_template_shortcode_column_title' ));
-        add_action('manage_uta_template_posts_custom_column', array( $this, 'uta_template_shortcode_column_content' ), 10, 2);
+        add_action('init', array( $this, 'template_kit_shortcode_create_post_type' ));
+        add_action('elementor/init', [ $this, 'template_kit_add_elementor_support']);
+        add_filter('manage_template_kit_posts_columns', array( $this, 'template_kit_shortcode_column_title'));
+        add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content'), 10, 2);
         add_filter('manage_elementor_library_posts_columns', array( $this, 'manage_elementor_library_posts_columns_title' ));
         add_action('manage_elementor_library_posts_custom_column', array( $this, 'manage_elementor_library_posts_custom_column_content' ), 10, 2);
-        add_shortcode("uta-template", [ $this, 'uta_template_render_shortcode' ]);
-        add_action("add_meta_boxes", [ $this, 'uta_template_add_meta_boxes' ]);
+        add_shortcode("template-kit", [ $this, 'template_kit_render_shortcode']);
+        add_action("add_meta_boxes", [ $this, 'template_kit_add_meta_boxes']);
     }
 
 
@@ -44,7 +44,7 @@ class Template_Kit_Admin
      *
      * @return void
      */
-    public function uta_template_shortcode_create_post_type() {
+    public function template_kit_shortcode_create_post_type() {
 
         $labels = array(
             'name'                  => _x('Template Kit', 'Post Type General Name', 'templatekit-wp-shortcode'),
@@ -80,7 +80,7 @@ class Template_Kit_Admin
             'menu-icon'             => 'dashicons-layout',
         );
 
-        register_post_type('templatekit', $args);
+        register_post_type('template_kit', $args);
     }
 
     /**
@@ -90,9 +90,9 @@ class Template_Kit_Admin
      *
      * @return void
      */
-    public function uta_template_add_elementor_support() {
+    public function template_kit_add_elementor_support() {
 
-        add_post_type_support('uta_template', 'elementor');
+        add_post_type_support('template_kit_shortcode', 'elementor');
     }
 
     
@@ -104,8 +104,8 @@ class Template_Kit_Admin
      * @param string $defaults
      * @return void
      */
-    public  function uta_template_shortcode_column_title( $defaults ) {
-        $defaults['uta-template-shortcode']  = 'Shortcode';
+    public  function template_kit_shortcode_column_title($defaults ) {
+        $defaults['template-kit-shortcode']  = 'Shortcode';
         return $defaults;
     }
 
@@ -118,10 +118,10 @@ class Template_Kit_Admin
      * @param int $post_ID
      * @return void
      */
-    public function uta_template_shortcode_column_content( $column_name, $post_ID ) {
+    public function template_kit_shortcode_column_content($column_name, $post_ID ) {
 
-        if ( 'uta-template-shortcode' == $column_name ) {
-            echo esc_html('[uta-template id="' . $post_ID . '"]');
+        if ( 'template-kit-shortcode' == $column_name ) {
+            echo esc_html('[template-kit id="' . $post_ID . '"]');
         }
     }
 
@@ -135,7 +135,7 @@ class Template_Kit_Admin
      * @return void
      */
     public  function manage_elementor_library_posts_columns_title( $defaults ) {
-        $defaults['uta-template-shortcode']  = 'Shortcode';
+        $defaults['template-kit-shortcode']  = 'Shortcode';
         return $defaults;
     }
 
@@ -149,9 +149,9 @@ class Template_Kit_Admin
      * @return void
      */
     public function manage_elementor_library_posts_custom_column_content( $column_name, $post_ID ) {
-        if ( 'uta-template-shortcode' == $column_name ) {
+        if ( 'template-kit-shortcode' == $column_name ) {
 
-            echo esc_html('[uta-template id="' . $post_ID . '"]');
+            echo esc_html('[template-kit id="' . $post_ID . '"]');
         }
     }
 
@@ -164,14 +164,13 @@ class Template_Kit_Admin
      * @param [type] $atts
      * @return void
      */
-    public function uta_template_render_shortcode( $atts ) {
+    public function template_kit_render_shortcode($atts ) {
 
         // Enable support for WPML & Polylang
         $language_support = apply_filters('uta_multilingual_support', false);
 
-
-        if ( ! isset($atts['id']) || empty($atts['id']) ) {
-            return '';
+        if (empty($atts['id'])) {
+            return;
         }
 
         $post_id = $atts['id'];
@@ -209,10 +208,16 @@ class Template_Kit_Admin
      *
      * @return void
      */
-    public function uta_template_add_meta_boxes(){
-        add_meta_box('uta-shortcode-box','Unlimited Theme Addons Template Shortcode',[ $this, 'uta_template_add_meta_boxes_content' ],'uta_template','side','high');  
+    public function template_kit_add_meta_boxes(){
+        add_meta_box(
+            'template-kit-shortcode-box',
+            'TemplateKit Shortcode',
+            [ $this, 'template_kit_add_meta_boxes_content'],
+            'template_kit',
+            'side',
+            'high'
+        );
     }
-
 
 
     /**
@@ -223,12 +228,12 @@ class Template_Kit_Admin
      * @param object $post
      * @return void
      */
-    function uta_template_add_meta_boxes_content( $post ) {  ?>
+    function template_kit_add_meta_boxes_content($post ) {  ?>
         <h4 style="margin-bottom:5px;">Shortcode</h4>
-        <input type='text' class='widefat' value='[uta-template id="<?php echo esc_attr($post->ID); ?>"]' readonly="">
+        <input type='text' class='widefat' value='[template-kit id="<?php echo esc_attr($post->ID); ?>"]' readonly="">
     
         <h4 style="margin-bottom:5px;">PHP Code</h4>
-        <input type='text' class='widefat' value="&lt;?php echo do_shortcode('[uta-template id=&quot;<?php echo esc_attr($post->ID); ?>&quot;]'); ?&gt;" readonly="">
+        <input type='text' class='widefat' value="&lt;?php echo do_shortcode('[template-kit id=&quot;<?php echo esc_attr($post->ID); ?>&quot;]'); ?&gt;" readonly="">
         <?php
     }
 
