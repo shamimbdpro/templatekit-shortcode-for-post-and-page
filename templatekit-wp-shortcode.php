@@ -1,8 +1,8 @@
 <?php
 /**
 * Plugin Name: TemplateKit WordPress Shortcode
-* Plugin URI: https://codepopular.com/unlimited-theme-addons
-* Description: Unlimited theme addons is very useful plugin to get amazing features for your website . if you Looking to add extra functionality to the Elementor page builder then this plugin will be help for you.
+* Plugin URI: https://codepopular.com
+* Description: TemplateKit is a WordPress shortcode plugin. With this plugin you can make template with a shortcode and place it anywhere in the website.
 * Version: 1.0.0
 * Author: codepopular
 * Author URI: https://www.codepopular.com

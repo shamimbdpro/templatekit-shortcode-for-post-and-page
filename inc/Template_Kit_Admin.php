@@ -40,7 +40,7 @@ class Template_Kit_Admin
     /**
      * Register Custom Post
      * 
-     * Register custo post type for template shortcode which allow to get shortcode each created item.
+     * Register post type for template shortcode which allow to get shortcode each created item.
      *
      * @return void
      */
@@ -56,11 +56,11 @@ class Template_Kit_Admin
             'all_items'             => __('All Templates', 'templatekit-wp-shortcode'),
             'add_new_item'          => __('Add New Template', 'templatekit-wp-shortcode'),
             'add_new'               => __('Add New', 'templatekit-wp-shortcode'),
-            'new_item'              => __('New UTA Template', 'templatekit-wp-shortcode'),
-            'edit_item'             => __('Edit UTA Template', 'templatekit-wp-shortcode'),
-            'update_item'           => __('Update UTA Template', 'templatekit-wp-shortcode'),
-            'view_item'             => __('View UTA Template', 'templatekit-wp-shortcode'),
-            'search_items'          => __('Search UTA Template', 'templatekit-wp-shortcode'),
+            'new_item'              => __('New Template', 'templatekit-wp-shortcode'),
+            'edit_item'             => __('Edit Template', 'templatekit-wp-shortcode'),
+            'update_item'           => __('Update Template', 'templatekit-wp-shortcode'),
+            'view_item'             => __('View Template', 'templatekit-wp-shortcode'),
+            'search_items'          => __('Search Template', 'templatekit-wp-shortcode'),
             'not_found'             => __('Not found', 'templatekit-wp-shortcode'),
             'not_found_in_trash'    => __('Not found in Trash', 'templatekit-wp-shortcode'),
         );
@@ -150,7 +150,6 @@ class Template_Kit_Admin
      */
     public function manage_elementor_library_posts_custom_column_content( $column_name, $post_ID ) {
         if ( 'template-kit-shortcode' == $column_name ) {
-
             echo esc_html('[template-kit id="' . $post_ID . '"]');
         }
     }
