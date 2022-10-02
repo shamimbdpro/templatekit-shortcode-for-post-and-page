@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 Requires PHP: 5.6
 License: GPLv2 or later
 
-== Description ==
+## Description ##
 
 
 ### **About the Author**
@@ -17,7 +17,7 @@ TemplateKit is the newest creation to the product line up of [CodePopular](https
 
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
 = Do WordPress Plugins Affect Site Speed? =
 
