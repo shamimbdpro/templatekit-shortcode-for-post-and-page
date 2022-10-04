@@ -1,5 +1,5 @@
 <?php
-class Template_Kit_Page_ShortCode{
+class Template_Kit_Page_Shortcode{
 
 
     /**
@@ -106,7 +106,7 @@ class Template_Kit_Page_ShortCode{
     }
 }
 
-Template_Kit_Page_ShortCode::get_instance()->init();
+Template_Kit_Page_Shortcode::get_instance()->init();
 
 
 ?>

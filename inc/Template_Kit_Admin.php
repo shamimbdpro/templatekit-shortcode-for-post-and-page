@@ -33,9 +33,12 @@ class Template_Kit_Admin
         add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
 
         // add shortcode column in post.
-        add_action('manage_post_posts_columns', array( $this, 'template_kit_shortcode_post_column_title' ));
-        add_action('manage_post_posts_custom_column', array( $this, 'template_kit_shortcode_post_column_content' ), 10, 2);
+        add_action('manage_posts_columns', array( $this, 'template_kit_shortcode_post_column_title' ));
+        add_action('manage_posts_custom_column', array( $this, 'template_kit_shortcode_post_column_content' ), 10, 2);
         add_shortcode("template-kit-post", [ $this, 'template_kit_post_render_shortcode' ]);
+
+//        add_filter('manage_posts_columns', 'template_kit_shortcode_post_column_title');
+//        add_action('manage_posts_custom_column', 'template_kit_shortcode_post_column_content', 10, 2);
 
 
         add_filter('manage_elementor_library_posts_columns', array( $this, 'manage_elementor_library_posts_columns_title' ));
