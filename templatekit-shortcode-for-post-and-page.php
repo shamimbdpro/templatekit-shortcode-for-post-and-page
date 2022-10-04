@@ -6,7 +6,7 @@
 * Version: 1.0.0
 * Author: codepopular
 * Author URI: https://www.codepopular.com
-* Text Domain: templatekit-wp-shortcode
+* Text Domain: templatekit-shortcode-for-post-and-page
 * License: GPL/GNU.
 * Domain Path: /languages
 * WP Requirement & Test

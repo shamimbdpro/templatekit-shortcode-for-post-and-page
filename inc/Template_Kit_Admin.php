@@ -27,8 +27,17 @@ class Template_Kit_Admin
 
         add_action('init', array( $this, 'template_kit_shortcode_create_post_type' ));
         add_action('elementor/init', [ $this, 'template_kit_add_elementor_support' ]);
+
+        // add shortcode column in custom post.
         add_filter('manage_template_kit_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
         add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
+
+        // add shortcode column in post.
+        add_action('manage_post_posts_columns', array( $this, 'template_kit_shortcode_post_column_title' ));
+        add_action('manage_post_posts_custom_column', array( $this, 'template_kit_shortcode_post_column_content' ), 10, 2);
+        add_shortcode("template-kit-post", [ $this, 'template_kit_post_render_shortcode' ]);
+
+
         add_filter('manage_elementor_library_posts_columns', array( $this, 'manage_elementor_library_posts_columns_title' ));
         add_action('manage_elementor_library_posts_custom_column', array( $this, 'manage_elementor_library_posts_custom_column_content' ), 10, 2);
         add_shortcode("template-kit", [ $this, 'template_kit_render_shortcode' ]);
@@ -47,26 +56,26 @@ class Template_Kit_Admin
     public function template_kit_shortcode_create_post_type() {
 
         $labels = array(
-            'name'                  => _x('Template Kit', 'Post Type General Name', 'templatekit-wp-shortcode'),
-            'singular_name'         => _x('Template Kit', 'Post Type Singular Name', 'templatekit-wp-shortcode'),
-            'menu_name'             => __('Template Kit', 'templatekit-wp-shortcode'),
-            'name_admin_bar'        => __('Template Kit', 'templatekit-wp-shortcode'),
-            'archives'              => __('List Archives', 'templatekit-wp-shortcode'),
-            'parent_item_colon'     => __('Parent List:', 'templatekit-wp-shortcode'),
-            'all_items'             => __('All Templates', 'templatekit-wp-shortcode'),
-            'add_new_item'          => __('Add New Template', 'templatekit-wp-shortcode'),
-            'add_new'               => __('Add New', 'templatekit-wp-shortcode'),
-            'new_item'              => __('New Template', 'templatekit-wp-shortcode'),
-            'edit_item'             => __('Edit Template', 'templatekit-wp-shortcode'),
-            'update_item'           => __('Update Template', 'templatekit-wp-shortcode'),
-            'view_item'             => __('View Template', 'templatekit-wp-shortcode'),
-            'search_items'          => __('Search Template', 'templatekit-wp-shortcode'),
-            'not_found'             => __('Not found', 'templatekit-wp-shortcode'),
-            'not_found_in_trash'    => __('Not found in Trash', 'templatekit-wp-shortcode'),
+            'name'                  => _x('Template Kit', 'Post Type General Name', 'templatekit-shortcode-for-post-and-page'),
+            'singular_name'         => _x('Template Kit', 'Post Type Singular Name', 'templatekit-shortcode-for-post-and-page'),
+            'menu_name'             => __('Template Kit', 'templatekit-shortcode-for-post-and-page'),
+            'name_admin_bar'        => __('Template Kit', 'templatekit-shortcode-for-post-and-page'),
+            'archives'              => __('List Archives', 'templatekit-shortcode-for-post-and-page'),
+            'parent_item_colon'     => __('Parent List:', 'templatekit-shortcode-for-post-and-page'),
+            'all_items'             => __('All Templates', 'templatekit-shortcode-for-post-and-page'),
+            'add_new_item'          => __('Add New Template', 'templatekit-shortcode-for-post-and-page'),
+            'add_new'               => __('Add New', 'templatekit-shortcode-for-post-and-page'),
+            'new_item'              => __('New Template', 'templatekit-shortcode-for-post-and-page'),
+            'edit_item'             => __('Edit Template', 'templatekit-shortcode-for-post-and-page'),
+            'update_item'           => __('Update Template', 'templatekit-shortcode-for-post-and-page'),
+            'view_item'             => __('View Template', 'templatekit-shortcode-for-post-and-page'),
+            'search_items'          => __('Search Template', 'templatekit-shortcode-for-post-and-page'),
+            'not_found'             => __('Not found', 'templatekit-shortcode-for-post-and-page'),
+            'not_found_in_trash'    => __('Not found in Trash', 'templatekit-shortcode-for-post-and-page'),
         );
 
         $args = array(
-            'label'                 => __('Post List', 'templatekit-wp-shortcode'),
+            'label'                 => __('Post List', 'templatekit-shortcode-for-post-and-page'),
             'labels'                => $labels,
             'supports'              => array( 'title', 'editor' ),
             'public'                => true,
@@ -92,13 +101,13 @@ class Template_Kit_Admin
      */
     public function template_kit_add_elementor_support() {
 
-        add_post_type_support('template_kit_shortcode', 'elementor');
+        add_post_type_support('template_kit', 'gutenberg');
     }
 
-    
+
     /**
      * Custom post type column.
-     * 
+     *
      * Add column in custom post type.
      *
      * @param string $defaults
@@ -111,7 +120,7 @@ class Template_Kit_Admin
 
     /**
      * Custom column content
-     * 
+     *
      * Add content for cusotm column in shortcode.
      *
      * @param string $column_name
@@ -157,7 +166,7 @@ class Template_Kit_Admin
 
     /**
      * Render shortcode content
-     * 
+     *
      * Get page content by applying shortcode.
      *
      * @param [type] $atts
@@ -166,7 +175,7 @@ class Template_Kit_Admin
     public function template_kit_render_shortcode( $atts ) {
 
         // Enable support for WPML & Polylang
-        $language_support = apply_filters('uta_multilingual_support', false);
+        $language_support = apply_filters('template_kit_multilingual_support', false);
 
         if ( empty($atts['id']) ) {
             return;
@@ -176,7 +185,7 @@ class Template_Kit_Admin
 
 
         if ( $language_support ) {
-            $post_id = apply_filters('wpml_object_id', $post_id, 'uta_multilingual_support');
+            $post_id = apply_filters('wpml_object_id', $post_id, 'template_kit_multilingual_support');
         }
 
         $response = null;
@@ -192,7 +201,85 @@ class Template_Kit_Admin
 
             if ( ! empty($the_content) ) {
                 $response = $the_content;
-            }        
+            }
+}
+
+        return $response;
+
+    }
+
+
+
+    /**
+     * Shortcode Column added for post.
+     *
+     * Add column in page post type.
+     *
+     * @param string $defaults
+     * @return void
+     */
+    public  function template_kit_shortcode_post_column_title( $defaults ) {
+        $defaults['template-kit-post-shortcode']  = 'Shortcode';
+        return $defaults;
+    }
+
+
+    /**
+     * Post shortcode column content
+     *
+     * Add content for post column in shortcode.
+     *
+     * @param string $column_name
+     * @param int $post_ID
+     * @return void
+     */
+    public function template_kit_shortcode_post_column_content( $column_name, $post_ID ) {
+
+        if ( 'template-kit-post-shortcode' == $column_name ) {
+            echo esc_html('[template-kit-post id="' . $post_ID . '"]');
+        }
+    }
+
+
+
+    /**
+     * Render Post shortcode content
+     *
+     * Get page content by applying shortcode.
+     *
+     * @param [type] $atts
+     * @return void
+     */
+    public function template_kit_post_render_shortcode( $atts ) {
+
+        // Enable support for WPML & Polylang
+        $language_support = apply_filters('template_kit_multilingual_support', false);
+
+        if ( empty($atts['id']) ) {
+            return;
+        }
+
+        $post_id = $atts['id'];
+
+
+        if ( $language_support ) {
+            $post_id = apply_filters('wpml_object_id', $post_id, 'template_kit_multilingual_support');
+        }
+
+        $response = null;
+
+        if ( class_exists('Elementor\Plugin') && Plugin::$instance->documents->get($post_id)->is_built_with_elementor() ) {
+
+            $response = Plugin::instance()->frontend->get_builder_content_for_display($post_id);
+
+        } else {
+
+            $post = get_post($post_id); // specific post
+            $the_content = apply_filters('the_content', $post->post_content);
+
+            if ( ! empty($the_content) ) {
+                $response = $the_content;
+            }
 }
 
         return $response;
