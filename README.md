@@ -1,4 +1,4 @@
-## TemplateKit WordPress Shortcode ##
+## Templatekit Shortcode For Post And Page ##
 Contributors: codepopular, shamimtpi
 Donate link: https://ko-fi.com/codepopular
 Tags: shortcode, wordpress, templatekit, template shortcode, elementor-shortcode, wp-shortcode
@@ -25,7 +25,7 @@ No, We have provided minified css to optimize your website.
 
 ## How can I discuss the plugin issues? ##
 You're more than welcome! we are ready to solve your issue. you can ask the query here.
-https://wordpress.org/support/plugin/templatekit-wp-shortcode
+https://wordpress.org/support/plugin/templatekit-shortcode-for-post-and-page/
 
 
 == Changelog ==
