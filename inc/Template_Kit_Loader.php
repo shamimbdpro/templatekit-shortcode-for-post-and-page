@@ -16,6 +16,7 @@ class Template_Kit_Shortcode_Loader{
         include_once(dirname( __FILE__ ). '/Template_Kit_i18n.php');
         include_once(dirname( __FILE__ ). '/Template_Kit_Helpers.php');
         include_once(dirname( __FILE__ ). '/Template_Kit_Admin.php');
+        include_once(dirname(__FILE__) . '/Template_Kit_Post_Shortcode.php');
         include_once(dirname(__FILE__) . '/Template_Kit_Page_Shortcode.php');
     }
 }

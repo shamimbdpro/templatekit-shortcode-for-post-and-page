@@ -1,8 +1,7 @@
 <?php
 use Elementor\Plugin;
 
-class Template_Kit_Page_Shortcode{
-
+class Template_Kit_Post_Shortcode{
 
     /**
      * @var null
@@ -23,9 +22,10 @@ class Template_Kit_Page_Shortcode{
      * Initialize global hooks.
      */
     public function init() {
-        add_action('manage_pages_columns', array( $this, 'template_kit_shortcode_page_column_title' ));
-        add_action('manage_pages_custom_column', array( $this, 'template_kit_shortcode_page_column_content' ), 10, 2);
-        add_shortcode("template-kit-page", [ $this, 'template_kit_page_render_shortcode' ]);
+
+        add_action('manage_post_posts_columns', array( $this, 'template_kit_shortcode_post_column_title' ));
+        add_action('manage_post_posts_custom_column', array( $this, 'template_kit_shortcode_post_column_content' ), 10, 2);
+        add_shortcode("template-kit-post", [ $this, 'template_kit_post_render_shortcode' ]);
     }
 
 
@@ -38,8 +38,8 @@ class Template_Kit_Page_Shortcode{
      * @param string $defaults
      * @return void
      */
-    public  function template_kit_shortcode_page_column_title( $defaults ) {
-        $defaults['template-kit-page-shortcode']  = 'Shortcode';
+    public  function template_kit_shortcode_post_column_title( $defaults ) {
+        $defaults['template-kit-post-shortcode']  = 'Shortcode';
         return $defaults;
     }
 
@@ -53,10 +53,10 @@ class Template_Kit_Page_Shortcode{
      * @param int $post_ID
      * @return void
      */
-    public function template_kit_shortcode_page_column_content( $column_name, $post_ID ) {
+    public function template_kit_shortcode_post_column_content( $column_name, $post_ID ) {
 
-        if ( 'template-kit-page-shortcode' == $column_name ) {
-            echo esc_html('[template-kit-page id="' . $post_ID . '"]');
+        if ( 'template-kit-post-shortcode' == $column_name ) {
+            echo esc_html('[template-kit-post id="' . $post_ID . '"]');
         }
     }
 
@@ -70,7 +70,7 @@ class Template_Kit_Page_Shortcode{
      * @param [type] $atts
      * @return void
      */
-    public function template_kit_page_render_shortcode( $atts ) {
+    public function template_kit_post_render_shortcode( $atts ) {
 
         // Enable support for WPML & Polylang
         $language_support = apply_filters('template_kit_multilingual_support', false);
@@ -105,9 +105,11 @@ class Template_Kit_Page_Shortcode{
         return $response;
 
     }
+
+
 }
 
-Template_Kit_Page_Shortcode::get_instance()->init();
+Template_Kit_Post_Shortcode::get_instance()->init();
 
 
 ?>
