@@ -29,14 +29,7 @@ class Template_Kit_Admin
         add_action('init', array( $this, 'template_kit_shortcode_create_post_type' ));
         add_action('elementor/init', [ $this, 'template_kit_add_elementor_support' ]);
 
-        // add shortcode column in custom post.
-        add_filter('manage_template_kit_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
-        add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
-
         add_action("init", [ $this, 'template_kit_shortcode_render' ]);
-
-        add_filter('manage_elementor_library_posts_columns', array( $this, 'manage_elementor_library_posts_columns_title' ));
-        add_action('manage_elementor_library_posts_custom_column', array( $this, 'manage_elementor_library_posts_custom_column_content' ), 10, 2);
 
         add_action("add_meta_boxes", [ $this, 'template_kit_add_meta_boxes' ]);
 
@@ -93,6 +86,35 @@ class Template_Kit_Admin
         register_post_type('template_kit', $args);
     }
 
+
+
+    public function template_kit_shortcode_render(){
+
+        $post_types_objects = get_post_types(
+            [
+                'public' => true,
+            ], 'objects'
+        );
+
+        foreach($post_types_objects as $name){
+
+            if('template_kit' === $name->name || 'post' === $name->name || 'page' === $name->name || 'elementor_library' === $name->name) {
+
+                if ('template_kit' !== $name->name) {
+                    add_shortcode('template_kit_' . $name->name, [$this, 'template_kit_render_shortcode']);
+                } else {
+                    add_shortcode($name->name, [$this, 'template_kit_render_shortcode']);
+                }
+
+                add_filter('manage_' . $name->name . '_posts_columns', array($this, 'template_kit_shortcode_column_title'));
+                add_action('manage_' . $name->name . '_posts_custom_column', array($this, 'template_kit_shortcode_column_content'), 10, 2);
+
+            }
+        }
+
+    }
+
+
     /**
      * Add elementor support.
      * 
@@ -130,65 +152,17 @@ class Template_Kit_Admin
      */
     public function template_kit_shortcode_column_content( $column_name, $post_ID ) {
 
+        $post_type = get_post_type();
         if ( 'template-kit-shortcode' == $column_name ) {
-            echo esc_html('[template-kit id="' . $post_ID . '"]');
-        }
-
-    }
-
-
-    /**
-     * Custom post type column.
-     * 
-     * Add column in custom post type.
-     *
-     * @param string $defaults
-     * @return void
-     */
-    public  function manage_elementor_library_posts_columns_title( $defaults ) {
-        $defaults['template-kit-shortcode']  = 'Shortcode';
-        return $defaults;
-    }
-
-    /**
-     * Custom column content
-     * 
-     * Add content for cusotm column in shortcode.
-     *
-     * @param string $column_name
-     * @param int $post_ID
-     * @return void
-     */
-    public function manage_elementor_library_posts_custom_column_content( $column_name, $post_ID ) {
-
-
-        if ( 'template-kit-shortcode' == $column_name ) {
-            echo esc_html('[template-kit id="' . $post_ID . '"]');
-        }
-
-    }
-
-    public function template_kit_shortcode_render(){
-
-        $post_types_objects = get_post_types(
-            [
-                'public' => true,
-            ], 'objects'
-        );
-
-        foreach($post_types_objects as $name){
-
-            if('template_kit' !== $name->name){
-                add_shortcode('template_kit_'.$name->name, [ $this, 'template_kit_render_shortcode' ]);
+            if($post_type !== 'template_kit'){
+                echo esc_html('[template_kit_'.$post_type.' id="' . $post_ID . '"]');
             }else{
-                add_shortcode($name->name, [ $this, 'template_kit_render_shortcode' ]);
+                echo esc_html('['.$post_type.' id="' . $post_ID . '"]');
             }
-
-            add_filter('manage_'.$name->name.'_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
-            add_action('manage_'.$name->name.'_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
         }
 
     }
+
 
 
     /**
@@ -265,10 +239,10 @@ class Template_Kit_Admin
      */
     function template_kit_add_meta_boxes_content( $post ) {  ?>
         <h4 style="margin-bottom:5px;">Shortcode</h4>
-        <input type='text' class='widefat' value='[template-kit id="<?php echo esc_attr($post->ID); ?>"]' readonly="">
+        <input type='text' class='widefat' value='[template_kit id="<?php echo esc_attr($post->ID); ?>"]' readonly="">
     
         <h4 style="margin-bottom:5px;">PHP Code</h4>
-        <input type='text' class='widefat' value="&lt;?php echo do_shortcode('[template-kit id=&quot;<?php echo esc_attr($post->ID); ?>&quot;]'); ?&gt;" readonly="">
+        <input type='text' class='widefat' value="&lt;?php echo do_shortcode('[template_kit id=&quot;<?php echo esc_attr($post->ID); ?>&quot;]'); ?&gt;" readonly="">
         <?php
     }
 
