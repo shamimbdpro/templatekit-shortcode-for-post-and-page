@@ -33,11 +33,16 @@ class Template_Kit_Admin
         add_filter('manage_template_kit_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
         add_action('manage_template_kit_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
 
+        add_action("init", [ $this, 'template_kit_shortcode_render' ]);
+
         add_filter('manage_elementor_library_posts_columns', array( $this, 'manage_elementor_library_posts_columns_title' ));
         add_action('manage_elementor_library_posts_custom_column', array( $this, 'manage_elementor_library_posts_custom_column_content' ), 10, 2);
 
-        add_shortcode("template-kit", [ $this, 'template_kit_render_shortcode' ]);
         add_action("add_meta_boxes", [ $this, 'template_kit_add_meta_boxes' ]);
+
+
+       // echo "<pre>"; print_r(get_post_types()); exit();
+
     }
 
 
@@ -128,6 +133,7 @@ class Template_Kit_Admin
         if ( 'template-kit-shortcode' == $column_name ) {
             echo esc_html('[template-kit id="' . $post_ID . '"]');
         }
+
     }
 
 
@@ -154,9 +160,34 @@ class Template_Kit_Admin
      * @return void
      */
     public function manage_elementor_library_posts_custom_column_content( $column_name, $post_ID ) {
+
+
         if ( 'template-kit-shortcode' == $column_name ) {
             echo esc_html('[template-kit id="' . $post_ID . '"]');
         }
+
+    }
+
+    public function template_kit_shortcode_render(){
+
+        $post_types_objects = get_post_types(
+            [
+                'public' => true,
+            ], 'objects'
+        );
+
+        foreach($post_types_objects as $name){
+
+            if('template_kit' !== $name->name){
+                add_shortcode('template_kit_'.$name->name, [ $this, 'template_kit_render_shortcode' ]);
+            }else{
+                add_shortcode($name->name, [ $this, 'template_kit_render_shortcode' ]);
+            }
+
+            add_filter('manage_'.$name->name.'_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
+            add_action('manage_'.$name->name.'_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
+        }
+
     }
 
 

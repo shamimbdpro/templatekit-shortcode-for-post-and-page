@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Templatekit Shortcode For Post And Page 
+* Plugin Name: Templatekit Shortcode For Post And Page
 * Plugin URI: https://codepopular.com
 * Description: TemplateKit is a WordPress shortcode plugin. With this plugin you can make template with a shortcode and place it anywhere in the website.
 * Version: 1.0.0
@@ -33,3 +33,4 @@ include_once(dirname( __FILE__ ). '/inc/Template_Kit_Loader.php');
 if ( function_exists( 'template_kit_wp_shortcode_run' ) ) {
     template_kit_wp_shortcode_run();
 }
+
