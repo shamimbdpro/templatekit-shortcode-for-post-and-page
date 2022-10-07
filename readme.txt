@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/codepopular
 Tags: shortcode, wordpress, templatekit, template shortcode, elementor-shortcode, wp-shortcode, page shortcode, post shortcode
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 
@@ -26,12 +26,15 @@ You're more than welcome! we are ready to solve your issue. you can ask the quer
 https://wordpress.org/support/plugin/templatekit-shortcode-for-post-and-page
 
 == Screenshots ==
-1. Page Shortcode.
+1. Post Shortcode.
 2. Page Shortcode.
 3. Template Kit Shortcode.
 
 == Changelog ==
 
-= 0.0.1 =
+= 1.0.1 =
+*Tracker Updated*
+
+= 1.0.0 =
 *initial release*
 
