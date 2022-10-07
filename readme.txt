@@ -1,7 +1,7 @@
 === Templatekit Shortcode For Post And Page ===
 Contributors: codepopular, shamimtpi
 Donate link: https://ko-fi.com/codepopular
-Tags: shortcode, wordpress, templatekit, template shortcode, elementor-shortcode, wp-shortcode
+Tags: shortcode, wordpress, templatekit, template shortcode, elementor-shortcode, wp-shortcode, page shortcode, post shortcode
 Requires at least: 4.0
 Tested up to: 6.0
 Stable tag: 1.0.0
@@ -9,11 +9,10 @@ Requires PHP: 5.6
 License: GPLv2 or later
 
 == Description ==
-
+TemplateKit is a Free WordPress shortcode Plugin. It is a simple & light weight WordPress plugin to make your WordPress site more easily to manage everything. Post and page shortcode comes with this plugin. If you use Elementor initially you will not get shortcode but if you install this plugin in your WordPress website then it will allow to put your elementor template using shortcode. You can put any post inside the page and any page inside the post using shortcode.
 
 ### **About the Author**
-
-TemplateKit is a Free WordPress Plugin. You you can get Unlimited WordPress shortcode using this plugin. If you use Elementor initially you will not get shortcode but if you install this plugin in your WordPress website then you will allow to put your elementor template using shortcode. This plugin make your site easy to using shortcode components
+TemplateKit is the newest creation to the product line up of [CodePopular](https://codepopular.com/), it has already managed to win the hearts of its users with a staggering 5-star rating. The plugin is coded in a structured way so you don't require any major coding know-how and is completely cross-browser compatible with mobile responsive features. You can get the largest number of addon styles for free here.
 
 
 == Frequently Asked Questions ==
@@ -27,15 +26,9 @@ You're more than welcome! we are ready to solve your issue. you can ask the quer
 https://wordpress.org/support/plugin/templatekit-shortcode-for-post-and-page
 
 == Screenshots ==
-1. Plugin Dasbhoard.
-2. Elementor Template Shortcode.
+1. Page Shortcode.
+2. Page Shortcode.
 3. Template Kit Shortcode.
-4. Testimonial.
-5. Before after compare.
-6. Team Member.
-7. Product List.
-8. Product Grid.
-
 
 == Changelog ==
 
