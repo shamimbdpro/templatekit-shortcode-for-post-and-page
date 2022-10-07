@@ -96,18 +96,18 @@ class Template_Kit_Admin
             ], 'objects'
         );
 
-        foreach($post_types_objects as $name){
+        foreach ( $post_types_objects as $name ) {
 
-            if('template_kit' === $name->name || 'post' === $name->name || 'page' === $name->name || 'elementor_library' === $name->name) {
+            if ( 'template_kit' === $name->name || 'post' === $name->name || 'page' === $name->name || 'elementor_library' === $name->name ) {
 
-                if ('template_kit' !== $name->name) {
-                    add_shortcode('template_kit_' . $name->name, [$this, 'template_kit_render_shortcode']);
+                if ( 'template_kit' !== $name->name ) {
+                    add_shortcode('template_kit_' . $name->name, [ $this, 'template_kit_render_shortcode' ]);
                 } else {
-                    add_shortcode($name->name, [$this, 'template_kit_render_shortcode']);
+                    add_shortcode($name->name, [ $this, 'template_kit_render_shortcode' ]);
                 }
 
-                add_filter('manage_' . $name->name . '_posts_columns', array($this, 'template_kit_shortcode_column_title'));
-                add_action('manage_' . $name->name . '_posts_custom_column', array($this, 'template_kit_shortcode_column_content'), 10, 2);
+                add_filter('manage_' . $name->name . '_posts_columns', array( $this, 'template_kit_shortcode_column_title' ));
+                add_action('manage_' . $name->name . '_posts_custom_column', array( $this, 'template_kit_shortcode_column_content' ), 10, 2);
 
             }
         }
@@ -154,9 +154,9 @@ class Template_Kit_Admin
 
         $post_type = get_post_type();
         if ( 'template-kit-shortcode' == $column_name ) {
-            if($post_type !== 'template_kit'){
+            if ( 'template_kit' !== $post_type ) {
                 echo esc_html('[template_kit_'.$post_type.' id="' . $post_ID . '"]');
-            }else{
+            }else {
                 echo esc_html('['.$post_type.' id="' . $post_ID . '"]');
             }
         }

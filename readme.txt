@@ -2,7 +2,7 @@
 Contributors: codepopular, shamimtpi
 Donate link: https://ko-fi.com/codepopular
 Tags: shortcode, wordpress, templatekit, template shortcode, elementor-shortcode, wp-shortcode, page shortcode, post shortcode
-Requires at least: 4.0
+Requires at least: 5.0
 Tested up to: 6.0
 Stable tag: 1.0.0
 Requires PHP: 5.6

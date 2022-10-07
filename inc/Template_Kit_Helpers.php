@@ -30,7 +30,7 @@ class Uta_helpers{
         $menu_id = 'templatekit';
         $wp_admin_bar->add_menu(array(
 			'id' => $menu_id,
-			'title' => __('TemplateKit', 'templatekit-wp-shortcode'),
+			'title' => __('TemplateKit', 'templatekit-shortcode-for-post-and-page'),
 			'href' => admin_url() .'/edit.php?post_type=template_kit',
 		));
     }

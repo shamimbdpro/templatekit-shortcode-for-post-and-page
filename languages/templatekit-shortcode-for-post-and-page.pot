@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-10-02 21:04+0600\n"
+"POT-Creation-Date: 2022-10-07 09:55+0600\n"
 "PO-Revision-Date: 2020-12-26 00:15+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,69 +23,69 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: assets\n"
 "X-Poedit-SearchPathExcluded-3: languages\n"
 
-#: inc/Template_Kit_Admin.php:50
+#: inc/Template_Kit_Admin.php:53
 msgctxt "Post Type General Name"
 msgid "Template Kit"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:51
+#: inc/Template_Kit_Admin.php:54
 msgctxt "Post Type Singular Name"
 msgid "Template Kit"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:52 inc/Template_Kit_Admin.php:53
+#: inc/Template_Kit_Admin.php:55 inc/Template_Kit_Admin.php:56
 msgid "Template Kit"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:54
+#: inc/Template_Kit_Admin.php:57
 msgid "List Archives"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:55
+#: inc/Template_Kit_Admin.php:58
 msgid "Parent List:"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:56
+#: inc/Template_Kit_Admin.php:59
 msgid "All Templates"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:57
+#: inc/Template_Kit_Admin.php:60
 msgid "Add New Template"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:58
+#: inc/Template_Kit_Admin.php:61
 msgid "Add New"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:59
+#: inc/Template_Kit_Admin.php:62
 msgid "New Template"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:60
+#: inc/Template_Kit_Admin.php:63
 msgid "Edit Template"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:61
+#: inc/Template_Kit_Admin.php:64
 msgid "Update Template"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:62
+#: inc/Template_Kit_Admin.php:65
 msgid "View Template"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:63
+#: inc/Template_Kit_Admin.php:66
 msgid "Search Template"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:64
+#: inc/Template_Kit_Admin.php:67
 msgid "Not found"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:65
+#: inc/Template_Kit_Admin.php:68
 msgid "Not found in Trash"
 msgstr ""
 
-#: inc/Template_Kit_Admin.php:69
+#: inc/Template_Kit_Admin.php:72
 msgid "Post List"
 msgstr ""
 

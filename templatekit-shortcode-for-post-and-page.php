@@ -10,8 +10,8 @@
 * License: GPL/GNU.
 * Domain Path: /languages
 * WP Requirement & Test
-* Requires at least: 4.0
-* Tested up to: 5.9
+* Requires at least: 5.0
+* Tested up to: 6.0
 * Requires PHP: 5.6
 */
 
@@ -25,12 +25,28 @@ define('TEMPLATE_KIT_PLUGIN_VERSION', '1.0.0');
 /* Include all file
 /*-----------------------------------------------------------------*/
 
-/**
- *
- */
+require __DIR__ . '/vendor/autoload.php';
 include_once(dirname( __FILE__ ). '/inc/Template_Kit_Loader.php');
 
 if ( function_exists( 'template_kit_wp_shortcode_run' ) ) {
     template_kit_wp_shortcode_run();
 }
 
+/**
+ * Initialize the plugin tracker
+ *
+ * @return void
+ */
+function appsero_init_tracker_templatekit_shortcode_for_post_and_page() {
+
+    $client = new Appsero\Client( '01fa1020-45a2-4a06-be8a-0079196703e8', 'Templatekit Shortcode For Post And Page', __FILE__ );
+
+    // Active insights
+    $client->insights()->init();
+
+    // Active automatic updater
+    $client->updater();
+
+}
+
+appsero_init_tracker_templatekit_shortcode_for_post_and_page();
